@@ -17,7 +17,6 @@ mass = 0.5
 lock_rotation = true
 freeze = true
 script = ExtResource("1_h1ioq")
-item_type = "DoubleLongBlackCup"
 
 [node name="doubleLongBlackCup" parent="." instance=ExtResource("2_mdg2u")]
 

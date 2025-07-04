@@ -17,7 +17,6 @@ mass = 0.5
 lock_rotation = true
 freeze = true
 script = ExtResource("1_6ep6o")
-item_type = "AmericanoCup"
 
 [node name="americanoCup" parent="." instance=ExtResource("1_serp0")]
 

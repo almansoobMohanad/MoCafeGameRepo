@@ -2,74 +2,50 @@ extends CharacterBody3D
 
 const SPEED = 6.0
 const JUMP_VELOCITY = 4.5
-const MAX_INVENTORY_SIZE = 1
-var inventory = []  # Stores items (max size 2)
 
 var last_direction = Vector3.FORWARD
 @export var rotation_speed = 4
 
-var cup_scene = preload("res://scenes/cup.tscn")
-var espressso_cup_scene = preload("res://scenes/espresso_cup.tscn")
-var double_espressso_cup_scene = preload("res://scenes/double_espresso_cup.tscn")
-var water_cup_scene = preload("res://scenes/water_cup.tscn")
-var americano_cup_scene = preload("res://scenes/americano_cup.tscn")
-var double_americano_cup_scene = preload("res://scenes/double_americano_cup.tscn")
-var long_black_cup_scene = preload("res://scenes/long_black_cup.tscn")
-var double_long_black_cup_scene = preload("res://scenes/double_long_black_cup.tscn")
+var held_item: Node3D = null
 
-var cups = ["Cup", "EspressoCup", "DoubleEspressoCup",
-			"WaterCup", "AmericanoCup", "DoubleAmericanoCup", 
-			"LongBlackCup", "DoubleLongBlackCup"]
+@onready var hand_socket: Node3D = $Body/HandSocket
 
 
-func add_to_inventory(item_name: String) -> bool:
-	if inventory.size() >= MAX_INVENTORY_SIZE:
-		print("Inventory is full!")
-		return false
+func add_to_inventory(item: Node3D) -> bool:
+	if held_item != null:
+		return false  # Already holding something
+
+	# Save item reference
+	held_item = item
+
+	# Reparent to hand socket
+	if item.get_parent() != null:
+		item.get_parent().remove_child(item)
+	hand_socket.add_child(item)
+
+	# Set its transform so it sits at hand socket's origin
+	item.transform = Transform3D.IDENTITY
+
+	# Disable physics and interaction while holding
+	if item is RigidBody3D:
+		item.freeze = true
 	
-	var new_item = null
-	
-	match item_name:
-		"Cup":
-			new_item = cup_scene.instantiate()
-		"EspressoCup":
-			new_item = espressso_cup_scene.instantiate()
-		"DoubleEspressoCup":
-			new_item = double_espressso_cup_scene.instantiate()
-		"AmericanoCup":
-			new_item = americano_cup_scene.instantiate()
-		"WaterCup":
-			new_item = water_cup_scene.instantiate()
-		"DoubleAmericanoCup":
-			new_item = double_americano_cup_scene.instantiate()
-		"LongBlackCup":
-			new_item = long_black_cup_scene.instantiate()
-		"DoubleLongBlackCup":
-			new_item = double_long_black_cup_scene.instantiate()
-		_:
-			print("Unknow item type: ", item_name)
-			return false
-		
-	$Body/HandSocket.add_child(new_item)
-	inventory.append(new_item)
-	print("Added ", item_name, " to inventory")
+	if item.has_node("InteractionArea"):
+		item.get_node("InteractionArea").monitoring = false
+
 	return true
 
-# Removes an item from the inventory
-func remove_from_inventory(item_type: String):
-	
-	for i in range(inventory.size()):
+func remove_from_inventory():
+	if held_item == null:
+		return
 
-		if inventory[i].name == item_type:
-			print("removed la")
-			var removed_item = inventory[i]
-			inventory.remove_at(i)  # Remove the item from the inventory
-			$Body/HandSocket.get_child(1).free()
-			return removed_item  # Return the removed item
+	# Re-enable physics before removing
+	if held_item is RigidBody3D:
+		held_item.freeze = false
 
-	print("No ", item_type, " found in inventory!")
-	
-	return null
+	held_item = null
+
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -101,26 +77,25 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func get_inventory():
-	
-	if inventory.size() > 0:
-		return inventory
-	
-	return null
-	
+	return held_item
+
+
+
 func throw_item():
-	if inventory.size() == 0:
+	if held_item == null:
 		print("No item to throw!")
 		return
 	
-	var item = inventory.pop_front()
-	$Body/HandSocket.remove_child(item)
-	get_parent().add_child(item)
+	$Body/HandSocket.remove_child(held_item)
+	get_parent().add_child(held_item)
 	
 	#Update item's position and make it interactable again
-	item.global_transform.origin = $Body/HandSocket.global_transform.origin
+	held_item.global_transform.origin = $Body/HandSocket.global_transform.origin
 	
-	if item.has_node("InteractionArea"):
-		item.get_node("InteractionArea").monitoring = true
+	if held_item.has_node("InteractionArea"):
+		held_item.get_node("InteractionArea").monitoring = true
 		
-	if item is RigidBody3D:
-		item.freeze = false
+	if held_item is RigidBody3D:
+		held_item.freeze = false
+		
+	held_item = null

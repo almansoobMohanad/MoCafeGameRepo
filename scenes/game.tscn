@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://bj3iu88tegt2q"]
+[gd_scene load_steps=18 format=3 uid="uid://bj3iu88tegt2q"]
 
 [ext_resource type="PackedScene" uid="uid://bf68gii7ei8gh" path="res://scenes/player.tscn" id="1_ynn3r"]
 [ext_resource type="Script" uid="uid://cs073go0b5b14" path="res://scenes/camera_3d.gd" id="2_bddmm"]
 [ext_resource type="PackedScene" uid="uid://bysmw04mia52m" path="res://scenes/coffee_machine.tscn" id="3_6s6lc"]
 [ext_resource type="PackedScene" uid="uid://c1exglbsb70jx" path="res://Assets/fbx/table_long.fbx" id="4_ixoe1"]
 [ext_resource type="PackedScene" uid="uid://r1sea6245850" path="res://scenes/coffee_grinder.tscn" id="5_rot7g"]
+[ext_resource type="PackedScene" uid="uid://dwm3l5745ftwc" path="res://scenes/cup.tscn" id="7_trtic"]
 [ext_resource type="PackedScene" uid="uid://xodhtcot5tj3" path="res://scenes/cups_storage.tscn" id="10_01t7h"]
 [ext_resource type="PackedScene" uid="uid://cknuhb2vfi6cb" path="res://blender_stuff/newCafe.blend" id="11_g5ygo"]
 [ext_resource type="PackedScene" uid="uid://d0j8bjd7x57hv" path="res://blender_stuff/cup.blend" id="11_pfpjy"]
@@ -60,6 +61,7 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 
 [node name="cups_storage" parent="." instance=ExtResource("10_01t7h")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -15.0492, 1.873, -7.81958)
+cup_scene = ExtResource("7_trtic")
 
 [node name="newCafe" parent="." instance=ExtResource("11_g5ygo")]
 transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, -0.506147, -1.78684, -11.4862)
