@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://clpmhhioab26i"]
+
+[node name="blue_top_light" type="OmniLight3D"]

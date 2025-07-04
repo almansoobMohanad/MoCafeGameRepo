@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf68gii7ei8gh"]
+
+[ext_resource type="Script" uid="uid://x1f072wtqcxd" path="res://scenes/player.gd" id="1_kdd4f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tid6a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f4hb4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e2to8"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_kdd4f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.117859, 0)
+shape = SubResource("CapsuleShape3D_tid6a")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.117859, 0)
+mesh = SubResource("CapsuleMesh_f4hb4")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="HandSocket" type="Node3D" parent="Body"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.2946, 0.639287, -0.841641)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/HandSocket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.019, 0.22, 0.22)
+mesh = SubResource("BoxMesh_e2to8")

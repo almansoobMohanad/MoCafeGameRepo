@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvxnyc8mrtvbq"]
+
+[ext_resource type="Script" uid="uid://765jpsdpui1f" path="res://scenes/hot_water_dispenser.gd" id="1_m8idb"]
+[ext_resource type="PackedScene" uid="uid://cnbjw0l3b31i" path="res://blender_stuff/hotWaterDispenser.blend" id="2_frmse"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="3_rm6g3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_22klx"]
+size = Vector3(0.528534, 1.15137, 0.766724)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_o0e5p"]
+radius = 0.7
+
+[node name="HotWaterDispenser" type="StaticBody3D"]
+script = ExtResource("1_m8idb")
+
+[node name="hotWaterDispenser" parent="." instance=ExtResource("2_frmse")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156506, 0, -0.116806)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0780161, 0.000144541, -0.115698)
+shape = SubResource("BoxShape3D_22klx")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_rm6g3")]
+action_name = "Add Hot Water"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.238114, 0, -0.12982)
+shape = SubResource("SphereShape3D_o0e5p")
+
+[node name="Timer" type="Timer" parent="."]

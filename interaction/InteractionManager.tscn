@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dddba40y3il3s"]
+
+[ext_resource type="Script" uid="uid://clurwm34oj5f0" path="res://interaction/interaction_manager.gd" id="1_mfrhi"]
+
+[sub_resource type="FontFile" id="FontFile_el33u"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/32/0/ascent = 0.0
+cache/0/32/0/descent = 0.0
+cache/0/32/0/underline_position = 0.0
+cache/0/32/0/underline_thickness = 0.0
+cache/0/32/0/scale = 1.0
+
+[node name="InteractionManager" type="Node3D"]
+script = ExtResource("1_mfrhi")
+
+[node name="Label" type="Label" parent="."]
+z_index = 31
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.873
+anchor_right = 0.504
+anchor_bottom = 0.873
+offset_left = -112.608
+offset_top = -24.704
+offset_right = 121.392
+offset_bottom = 19.296
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = SubResource("FontFile_el33u")
+theme_override_font_sizes/font_size = 32
+text = "[E] TO INTERACT"
+horizontal_alignment = 1
+vertical_alignment = 1

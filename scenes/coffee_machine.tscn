@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://bysmw04mia52m"]
+
+[ext_resource type="Script" uid="uid://ca4ad63l4j6ra" path="res://scenes/coffee_machine.gd" id="1_rtpji"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="2_0fpv1"]
+[ext_resource type="AudioStream" uid="uid://yh7wosy7cqoe" path="res://Sounds/SFX/96906__ohrwurm__espresso-machine.wav" id="3_bcut1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yuxo0"]
+size = Vector3(0.25, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37efy"]
+albedo_color = Color(0.306923, 0.306923, 0.306923, 1)
+metallic = 0.66
+metallic_specular = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_my71h"]
+size = Vector3(0.25, 0.1, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lh3up"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ap1xh"]
+top_radius = 0.025
+bottom_radius = 0.025
+height = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2oosa"]
+size = Vector3(0.491669, 0.495483, 0.499023)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lehfh"]
+radius = 0.7
+
+[node name="coffeeMachine" type="StaticBody3D"]
+script = ExtResource("1_rtpji")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006, 0.005, 0)
+mesh = SubResource("BoxMesh_yuxo0")
+surface_material_override/0 = SubResource("StandardMaterial3D_37efy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, -0.192334, 0)
+mesh = SubResource("BoxMesh_my71h")
+surface_material_override/0 = SubResource("StandardMaterial3D_37efy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.252211, 0.204841, 0.00119311)
+mesh = SubResource("BoxMesh_my71h")
+surface_material_override/0 = SubResource("StandardMaterial3D_37efy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275031, 0.113539, 0.037866)
+mesh = SubResource("CylinderMesh_lh3up")
+surface_material_override/0 = SubResource("StandardMaterial3D_37efy")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.443886, 0.143794, 0)
+mesh = SubResource("CylinderMesh_ap1xh")
+surface_material_override/0 = SubResource("StandardMaterial3D_37efy")
+
+[node name="BodyCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131271, 0.00384521, 0.00634766)
+shape = SubResource("BoxShape3D_2oosa")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_0fpv1")]
+action_name = "Brew Coffee"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.089904, 0, 0)
+shape = SubResource("SphereShape3D_lehfh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bcut1")
+attenuation_model = 3
+volume_db = -5.0
+bus = &"SFX"

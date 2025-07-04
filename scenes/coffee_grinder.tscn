@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://r1sea6245850"]
+
+[ext_resource type="Script" uid="uid://d18n0rwivrujm" path="res://scenes/coffee_grinder.gd" id="1_586bi"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="1_moigm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_swqxy"]
+size = Vector3(0.5, 0.1, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b10es"]
+size = Vector3(0.25, 0.5, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6jxmt"]
+top_radius = 0.15
+bottom_radius = 0.1
+height = 0.2
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gf788"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.15
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vm6vm"]
+size = Vector3(0.490707, 0.65686, 0.498291)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_28mgc"]
+radius = 0.7
+
+[node name="coffee_grinder" type="StaticBody3D"]
+script = ExtResource("1_586bi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121435, 0.401626, 0)
+mesh = SubResource("BoxMesh_swqxy")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.121435, 0.000953637, 0)
+mesh = SubResource("BoxMesh_swqxy")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.250568, 0.2011, -2.33054e-05)
+mesh = SubResource("BoxMesh_b10es")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129844, 0.542009, -0.0146108)
+mesh = SubResource("CylinderMesh_6jxmt")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00192874, 0.296166, 0)
+mesh = SubResource("CylinderMesh_gf788")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117258, 0.28019, 0.00194234)
+shape = SubResource("BoxShape3D_vm6vm")
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_moigm")]
+action_name = "Grind Coffee"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171511, 0.210178, -0.0182287)
+shape = SubResource("SphereShape3D_28mgc")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbt1gpipv5p4y"]
+
+[ext_resource type="Script" uid="uid://cntkrjuw5jgoj" path="res://scenes/cup.gd" id="1_h1ioq"]
+[ext_resource type="PackedScene" uid="uid://srvx31mj1aha" path="res://blender_stuff/doubleLongBlackCup.blend" id="2_mdg2u"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="3_giaaa"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3jkd6"]
+height = 0.233104
+radius = 0.186616
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8faxg"]
+radius = 0.434777
+
+[node name="DoubleLongBlackCup" type="RigidBody3D"]
+collision_layer = 4
+mass = 0.5
+lock_rotation = true
+freeze = true
+script = ExtResource("1_h1ioq")
+item_type = "DoubleLongBlackCup"
+
+[node name="doubleLongBlackCup" parent="." instance=ExtResource("2_mdg2u")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00222826, 0.0443649, 0.0033424)
+shape = SubResource("CylinderShape3D_3jkd6")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_giaaa")]
+action_name = "pick up"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_8faxg")

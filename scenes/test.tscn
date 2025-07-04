@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bn1210xluddka"]
+
+[node name="Test" type="OmniLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0120144, 0.0458546, -0.0219765)
+light_energy = 4.5
+omni_range = 25.0

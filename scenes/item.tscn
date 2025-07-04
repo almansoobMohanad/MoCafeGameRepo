@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2pvnmjbfltqs"]
+
+[ext_resource type="PackedScene" uid="uid://d0j8bjd7x57hv" path="res://blender_stuff/cup.blend" id="2_3woce"]
+
+[sub_resource type="Resource" id="Resource_4gq7n"]
+metadata/__load_path__ = "res://scenes/item.gd"
+
+[node name="Item" type="Node3D"]
+script = SubResource("Resource_4gq7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="cup" parent="." instance=ExtResource("2_3woce")]

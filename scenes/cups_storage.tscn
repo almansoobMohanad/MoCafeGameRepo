@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://xodhtcot5tj3"]
+
+[ext_resource type="Script" uid="uid://dtut1rb7mpq4b" path="res://scenes/cups_storage.gd" id="1_8eai8"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="2_ptklu"]
+[ext_resource type="PackedScene" uid="uid://7ug2ykljjrmd" path="res://blender_stuff/cupsStorage.blend" id="3_f64pk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_46bco"]
+size = Vector3(0.5, 0.3, 0.75)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k3fys"]
+size = Vector3(0.35, 0.35, 0.6)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r641q"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3odg2"]
+size = Vector3(0.488586, 0.268677, 0.735352)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vrhev"]
+radius = 0.7
+
+[node name="cups_storage" type="StaticBody3D"]
+script = ExtResource("1_8eai8")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.334292, -0.0641152, 0.0301695)
+visible = false
+operation = 2
+mesh = SubResource("BoxMesh_46bco")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.119961, 0)
+operation = 2
+mesh = SubResource("BoxMesh_k3fys")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10513, -0.0229923, 0.213333)
+mesh = SubResource("CylinderMesh_r641q")
+
+[node name="CSGMesh3D5" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(-0.997884, -0.0650199, 0, 0.0650199, -0.997884, 0, 0, 0, 1, -0.048796, -0.0229923, -0.161192)
+mesh = SubResource("CylinderMesh_r641q")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10513, -0.0229923, -0.0885172)
+mesh = SubResource("CylinderMesh_r641q")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="CSGMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0730406, -0.0229923, 0.047303)
+mesh = SubResource("CylinderMesh_r641q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.336639, -0.038147, 0.0327148)
+shape = SubResource("BoxShape3D_3odg2")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_ptklu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.324479, 0, 0)
+action_name = "Take a cup"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_vrhev")
+
+[node name="cupsStorage" parent="." instance=ExtResource("3_f64pk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33342, -0.167268, -0.0868979)
