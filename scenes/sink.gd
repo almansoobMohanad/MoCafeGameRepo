@@ -33,5 +33,6 @@ func _on_interact():
 			
 	else:
 		print("no item to throw")
+		print("MEOw")
 		
 		
