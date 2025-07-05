@@ -3,7 +3,6 @@ extends StaticBody3D
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var timer = $Timer
-@onready var audio_player = $AudioStreamPlayer3D
 
 var is_adding_water = false
 var cup: Cup = null

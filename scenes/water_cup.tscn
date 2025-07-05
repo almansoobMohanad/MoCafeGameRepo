@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfn11tkbl80bn"]
+[gd_scene load_steps=7 format=3 uid="uid://dfn11tkbl80bn"]
 
 [ext_resource type="PackedScene" uid="uid://dmrb3dxxqssoa" path="res://blender_stuff/waterCup.blend" id="1_d3lp4"]
 [ext_resource type="Script" uid="uid://cntkrjuw5jgoj" path="res://scenes/cup.gd" id="1_jrm2o"]
 [ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="2_72qu6"]
+[ext_resource type="PackedScene" uid="uid://bljf3f3yosoxf" path="res://scenes/long_black_cup.tscn" id="2_jb8cl"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7p32d"]
 height = 0.233104
@@ -17,6 +18,7 @@ mass = 0.5
 lock_rotation = true
 freeze = true
 script = ExtResource("1_jrm2o")
+brew_next_scene = ExtResource("2_jb8cl")
 
 [node name="waterCup" parent="." instance=ExtResource("1_d3lp4")]
 
