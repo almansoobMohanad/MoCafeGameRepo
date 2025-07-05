@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://k1hbce2yx07d"]
+
+[ext_resource type="Script" uid="uid://clvr31ukwb84n" path="res://milk_pitcher.gd" id="1_w6skf"]
+[ext_resource type="PackedScene" uid="uid://4od5hhb3fp8m" path="res://blender_stuff/frother.blend" id="2_4et2l"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="3_w6skf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_60qfc"]
+height = 0.463623
+radius = 0.19043
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wj0s6"]
+
+[node name="MilkPitcher" type="RigidBody3D"]
+collision_layer = 4
+mass = 0.5
+lock_rotation = true
+script = ExtResource("1_w6skf")
+
+[node name="frother" parent="." instance=ExtResource("2_4et2l")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.140503, 0)
+shape = SubResource("CylinderShape3D_60qfc")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_w6skf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.147884, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_wj0s6")

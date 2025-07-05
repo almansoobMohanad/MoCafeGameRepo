@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bj3iu88tegt2q"]
+[gd_scene load_steps=19 format=3 uid="uid://bj3iu88tegt2q"]
 
 [ext_resource type="PackedScene" uid="uid://bf68gii7ei8gh" path="res://scenes/player.tscn" id="1_ynn3r"]
 [ext_resource type="Script" uid="uid://cs073go0b5b14" path="res://scenes/camera_3d.gd" id="2_bddmm"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cvxnyc8mrtvbq" path="res://scenes/hot_water_dispenser.tscn" id="13_jglpo"]
 [ext_resource type="PackedScene" uid="uid://dbqg3ddjbwtbi" path="res://scenes/sink.tscn" id="14_02huy"]
 [ext_resource type="PackedScene" uid="uid://clpmhhioab26i" path="res://scenes/blue_top_light.tscn" id="14_p4rvs"]
+[ext_resource type="PackedScene" uid="uid://k1hbce2yx07d" path="res://scenes/milk_pitcher.tscn" id="15_ir15t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrseg"]
 size = Vector3(1.95691, 0.923828, 3.95448)
@@ -116,3 +117,6 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.758, 0.3, -4.345)
 shape = SubResource("BoxShape3D_kvuet")
+
+[node name="MilkPitcher" parent="." instance=ExtResource("15_ir15t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83535, 1.81049, -12.8012)
