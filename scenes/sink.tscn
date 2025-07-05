@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbqg3ddjbwtbi"]
+[gd_scene load_steps=8 format=3 uid="uid://dbqg3ddjbwtbi"]
 
 [ext_resource type="Script" uid="uid://cro6p88v66bp0" path="res://scenes/sink.gd" id="1_6se1g"]
 [ext_resource type="PackedScene" uid="uid://c5kcq4rr3dtru" path="res://blender_stuff/sink.blend" id="1_020uk"]
 [ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="2_jle7y"]
+[ext_resource type="PackedScene" uid="uid://dwm3l5745ftwc" path="res://scenes/cup.tscn" id="2_purdx"]
 [ext_resource type="AudioStream" uid="uid://cesx5rkvrgksd" path="res://Sounds/SFX/Water, Plumbing, Bathroom, Toilet Flush, Tank Refill 01 SND3116.wav" id="4_03u17"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jruyw"]
@@ -13,6 +14,7 @@ radius = 1.05393
 
 [node name="Sink" type="StaticBody3D"]
 script = ExtResource("1_6se1g")
+cup_scene = ExtResource("2_purdx")
 
 [node name="sink" parent="." instance=ExtResource("1_020uk")]
 

@@ -3,10 +3,9 @@ extends StaticBody3D
 @onready var interaction_area = $InteractionArea
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var audio_player = $AudioStreamPlayer3D
+@export var cup_scene: PackedScene
 
-var cups = ["EspressoCup", "DoubleEspressoCup",
-			"WaterCup", "AmericanoCup", "DoubleAmericanoCup", 
-			"LongBlackCup", "DoubleLongBlackCup"]
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,18 +13,18 @@ func _ready() -> void:
 
 func _on_interact():
 	
-	var inventory = player.get_inventory()
+	var held_item = player.get_inventory()
 	
-	if inventory:
-		
-		var item = inventory[0].item_type
-		
-		print("this is the item")
+	if held_item:
 		
 		#remove whatever cup and add empty cup
-		if item in cups:
-			player.remove_from_inventory(item)
-			player.add_to_inventory("Cup")
+		if held_item is Cup:
+			player.remove_from_inventory()
+			var new_cup = cup_scene.instantiate()
+			get_tree().current_scene.add_child(new_cup)  # Ensure it's in the scene tree
+			new_cup.rotation = held_item.rotation
+			player.add_to_inventory(new_cup)
+			held_item.queue_free()
 			audio_player.play()
 		
 		else:
@@ -33,7 +32,5 @@ func _on_interact():
 			
 	else:
 		print("no item to throw")
-		print("MEOw")
-		print("THIS IS FOR THE CODE REWRITE")
 		
 		
