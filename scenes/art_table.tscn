@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds1seefwvkuo8"]
+
+[ext_resource type="Script" uid="uid://60r0a5xhfhf8" path="res://art_table.gd" id="1_t6r41"]
+[ext_resource type="PackedScene" uid="uid://c8h6l5ibam50" path="res://blender_stuff/artTable.blend" id="2_a148k"]
+[ext_resource type="PackedScene" uid="uid://bta3t01ntki35" path="res://interaction/interaction_area/interaction_area.tscn" id="3_sc4si"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2ok1"]
+size = Vector3(1, 0.106995, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5xklg"]
+radius = 0.801303
+
+[node name="ArtTable" type="StaticBody3D"]
+script = ExtResource("1_t6r41")
+
+[node name="artTable" parent="." instance=ExtResource("2_a148k")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.15527e-05, 0)
+shape = SubResource("BoxShape3D_l2ok1")
+
+[node name="InteractionArea" parent="." instance=ExtResource("3_sc4si")]
+action_name = "place cup"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("SphereShape3D_5xklg")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

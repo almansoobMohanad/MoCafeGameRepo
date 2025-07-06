@@ -19,6 +19,7 @@ lock_rotation = true
 freeze = true
 script = ExtResource("1_jrm2o")
 brew_next_scene = ExtResource("2_jb8cl")
+has_content = true
 
 [node name="waterCup" parent="." instance=ExtResource("1_d3lp4")]
 

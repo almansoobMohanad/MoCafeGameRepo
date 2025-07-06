@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bj3iu88tegt2q"]
+[gd_scene load_steps=21 format=3 uid="uid://bj3iu88tegt2q"]
 
 [ext_resource type="PackedScene" uid="uid://bf68gii7ei8gh" path="res://scenes/player.tscn" id="1_ynn3r"]
 [ext_resource type="Script" uid="uid://cs073go0b5b14" path="res://scenes/camera_3d.gd" id="2_bddmm"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dbqg3ddjbwtbi" path="res://scenes/sink.tscn" id="14_02huy"]
 [ext_resource type="PackedScene" uid="uid://clpmhhioab26i" path="res://scenes/blue_top_light.tscn" id="14_p4rvs"]
 [ext_resource type="PackedScene" uid="uid://k1hbce2yx07d" path="res://scenes/milk_pitcher.tscn" id="15_ir15t"]
+[ext_resource type="PackedScene" uid="uid://cr2h6cr31a74f" path="res://scenes/full_milk_pitcher.tscn" id="16_ca42v"]
+[ext_resource type="PackedScene" uid="uid://ds1seefwvkuo8" path="res://scenes/art_table.tscn" id="17_rysoc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rrseg"]
 size = Vector3(1.95691, 0.923828, 3.95448)
@@ -33,8 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.071, -7.866)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.787505, 0.616308, 0, -0.616308, 0.787505, -0.513382, 55.796, 57.5408)
 projection = 1
-size = 15.0
+size = 10.0
 script = ExtResource("2_bddmm")
+follow_offset = Vector3(0, 51, 62.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.163955, 0.754912, -0.635001, 0.72652, 0.527847, 0.439939, 0.667299, -0.389211, -0.635002, 13.5644, 18.235, 23.5472)
@@ -65,7 +68,7 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 cup_scene = ExtResource("7_trtic")
 
 [node name="newCafe" parent="." instance=ExtResource("11_g5ygo")]
-transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, -0.506147, -1.78684, -11.4862)
+transform = Transform3D(0.707107, 0, 0.707106, 0, 1, 0, -0.707107, 0, 0.707106, -0.550211, -1.78684, -11.481)
 
 [node name="Test" parent="." instance=ExtResource("12_loo31")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.460298, 11.3552, -7.43071)
@@ -119,4 +122,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.758, 0.3, -4.345)
 shape = SubResource("BoxShape3D_kvuet")
 
 [node name="MilkPitcher" parent="." instance=ExtResource("15_ir15t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83535, 1.81049, -12.8012)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55455, 1.81049, -14.0809)
+
+[node name="MilkPitcher2" parent="." instance=ExtResource("16_ca42v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7021, 1.70965, -8.5126)
+
+[node name="ArtTable" parent="." instance=ExtResource("17_rysoc")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.1574, 1.6865, -12.8566)

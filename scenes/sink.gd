@@ -3,7 +3,6 @@ extends StaticBody3D
 @onready var interaction_area = $InteractionArea
 @onready var player = get_tree().get_first_node_in_group("player")
 @onready var audio_player = $AudioStreamPlayer3D
-@export var cup_scene: PackedScene
 
 
 
@@ -18,12 +17,13 @@ func _on_interact():
 	if held_item:
 		
 		#remove whatever cup and add empty cup
-		if held_item is Cup:
+		if held_item is Holdable and held_item.has_content:
 			player.remove_from_inventory()
-			var new_cup = cup_scene.instantiate()
-			get_tree().current_scene.add_child(new_cup)  # Ensure it's in the scene tree
-			new_cup.rotation = held_item.rotation
-			player.add_to_inventory(new_cup)
+			var empty_version = held_item.get_empty_version().instantiate()
+			
+			get_tree().current_scene.add_child(empty_version)
+			empty_version.rotation = held_item.rotation
+			player.add_to_inventory(empty_version)
 			held_item.queue_free()
 			audio_player.play()
 		

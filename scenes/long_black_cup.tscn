@@ -19,6 +19,7 @@ lock_rotation = true
 freeze = true
 script = ExtResource("1_5r1ef")
 brew_next_scene = ExtResource("2_ewcv0")
+has_content = true
 
 [node name="longBlackCup" parent="." instance=ExtResource("1_mlopq")]
 
